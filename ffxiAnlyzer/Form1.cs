@@ -17,14 +17,12 @@ namespace ffxiAnlyzer
         string fileName = string.Empty;
 
         DataSet1 dmgDataSet;
-        List<string> sources;
 
         public Form1()
         {
             InitializeComponent();
 
             dmgDataSet = new DataSet1();
-            sources = new List<string>();
         }
 
         /// <summary>
@@ -34,6 +32,7 @@ namespace ffxiAnlyzer
         /// <param name="e"></param>
         private void buttonTest_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
             var dmgDataSetList = new List<DmgDataSet>();
 
             dmgDataSet.DataTable2.Clear();
@@ -44,6 +43,7 @@ namespace ffxiAnlyzer
                 var targets = checkedListBox2.CheckedItems;
                 foreach (string target in targets)
                 {
+                    var sources = checkedListBox3.CheckedItems;
                     foreach (string source in sources)
                     {
                         var ds1 = dmgDataSet.DataTable1.Select(string.Format("name = '{0}' AND target = '{1}' AND source = '{2}'", name, target, source));
@@ -92,6 +92,11 @@ namespace ffxiAnlyzer
                     }
                 }
             }
+
+            dataGridView1.DataSource = dmgDataSet.DataTable2;
+            dataGridView1.Columns["damageAve"].DefaultCellStyle.Format = ".000";
+            dataGridView1.Update();
+            this.Cursor = Cursors.Default;
         }
 
 
@@ -118,7 +123,7 @@ namespace ffxiAnlyzer
                     damageCountStart = true;
                     continue;
                 }
-                if (damageCountStart && (mes.IndexOf("→") == 0) && (mes.IndexOf("に、") > 0))
+                if (damageCountStart && (mes.IndexOf("→") == 0) && (mes.IndexOf("に、") > 0) && (mes.IndexOf("ダメージ。") > 0))
                 {
                     if (mes.IndexOf("→マジックバースト！") >= 0)
                     {
@@ -214,7 +219,7 @@ namespace ffxiAnlyzer
             foreach (var dr in dmgDataSet.DataTable1)
             {
                 bool newName = true;
-                foreach (string item in sources)
+                foreach (string item in checkedListBox3.Items)
                 {
                     if (item == dr.source)
                     {
@@ -223,7 +228,7 @@ namespace ffxiAnlyzer
                 }
                 if (newName)
                 {
-                    sources.Add(dr.source);
+                    checkedListBox3.Items.Add(dr.source, CheckState.Checked);
                 }
             }
 
@@ -245,6 +250,62 @@ namespace ffxiAnlyzer
                     break;
             }
         }
+
+        private void checkBoxName_CheckedChanged(object sender, EventArgs e)
+        {
+            var state = CheckState.Checked;
+            if (checkBoxName.Checked)
+            {
+                state = CheckState.Checked;
+            }
+            else
+            {
+                state = CheckState.Unchecked;
+            }
+
+            for (int i = 0; i < checkedListBox1.Items.Count; i++)
+            {
+                checkedListBox1.SetItemCheckState(i, state);
+            }
+        }
+
+        private void checkBoxTarget_CheckedChanged(object sender, EventArgs e)
+        {
+            var state = CheckState.Checked;
+            if (checkBoxTarget.Checked)
+            {
+                state = CheckState.Checked;
+            }
+            else
+            {
+                state = CheckState.Unchecked;
+            }
+
+            for (int i = 0; i < checkedListBox2.Items.Count; i++)
+            {
+                checkedListBox2.SetItemCheckState(i, state);
+            }
+        }
+
+        private void checkBoxSource_CheckedChanged(object sender, EventArgs e)
+        {
+            var state = CheckState.Checked;
+            if (checkBoxSource.Checked)
+            {
+                state = CheckState.Checked;
+            }
+            else
+            {
+                state = CheckState.Unchecked;
+            }
+
+            for (int i = 0; i < checkedListBox3.Items.Count; i++)
+            {
+                checkedListBox3.SetItemCheckState(i, state);
+            }
+        }
+
+
     }
 
 
