@@ -34,8 +34,6 @@ namespace ffxiAnlyzer
         /// <param name="e"></param>
         private void buttonTest_Click(object sender, EventArgs e)
         {
-            var dmgDataSetList = new List<DmgDataSet>();
-
             dmgDataSet.DataTable2.Clear();
 
             var names = checkedListBox1.CheckedItems;
@@ -69,15 +67,6 @@ namespace ffxiAnlyzer
                                 }
                                 count++;
                             }
-                            var dds = new DmgDataSet();
-                            dds.name = name;
-                            dds.target = target;
-                            dds.source = source;
-                            dds.damage = dmgSum;
-                            dds.damageMax = dmgMax;
-                            dds.damageMin = dmgMin;
-                            dds.count = count;
-                            dmgDataSetList.Add(dds);
                             var dr2 = (DataSet1.DataTable2Row)dmgDataSet.DataTable2.NewRow();
                             dr2.name = name;
                             dr2.target = target;
@@ -85,13 +74,16 @@ namespace ffxiAnlyzer
                             dr2.damageTot = dmgSum;
                             dr2.damageMax = dmgMax;
                             dr2.damageMin = dmgMin;
-                            dr2.damageAve = dds.avarage;
+                            dr2.damageAve = (double)dmgSum / (double)count;
                             dr2.count = count;
                             dmgDataSet.DataTable2.Rows.Add(dr2);
                         }
                     }
                 }
             }
+
+            dataGridView1.DataMember = dmgDataSet.DataTable2.TableName;
+            
         }
 
 
