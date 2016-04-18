@@ -56,10 +56,9 @@
             // 
             // buttonTest
             // 
-            this.buttonTest.Location = new System.Drawing.Point(313, 51);
-            this.buttonTest.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.buttonTest.Location = new System.Drawing.Point(188, 34);
             this.buttonTest.Name = "buttonTest";
-            this.buttonTest.Size = new System.Drawing.Size(125, 34);
+            this.buttonTest.Size = new System.Drawing.Size(75, 23);
             this.buttonTest.TabIndex = 0;
             this.buttonTest.Text = "解析開始";
             this.buttonTest.UseVisualStyleBackColor = true;
@@ -76,8 +75,7 @@
             this.ファイルToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(10, 3, 0, 3);
-            this.menuStrip1.Size = new System.Drawing.Size(1427, 35);
+            this.menuStrip1.Size = new System.Drawing.Size(856, 26);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -86,13 +84,13 @@
             this.ファイルToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.開くToolStripMenuItem});
             this.ファイルToolStripMenuItem.Name = "ファイルToolStripMenuItem";
-            this.ファイルToolStripMenuItem.Size = new System.Drawing.Size(74, 29);
+            this.ファイルToolStripMenuItem.Size = new System.Drawing.Size(68, 22);
             this.ファイルToolStripMenuItem.Text = "ファイル";
             // 
             // 開くToolStripMenuItem
             // 
             this.開くToolStripMenuItem.Name = "開くToolStripMenuItem";
-            this.開くToolStripMenuItem.Size = new System.Drawing.Size(126, 30);
+            this.開くToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.開くToolStripMenuItem.Text = "開く";
             this.開くToolStripMenuItem.Click += new System.EventHandler(this.開くToolStripMenuItem_Click);
             // 
@@ -100,11 +98,10 @@
             // 
             this.checkedListBox1.CheckOnClick = true;
             this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(8, 35);
-            this.checkedListBox1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.checkedListBox1.Location = new System.Drawing.Point(5, 23);
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.ScrollAlwaysVisible = true;
-            this.checkedListBox1.Size = new System.Drawing.Size(236, 504);
+            this.checkedListBox1.Size = new System.Drawing.Size(143, 326);
             this.checkedListBox1.Sorted = true;
             this.checkedListBox1.TabIndex = 2;
             // 
@@ -112,33 +109,31 @@
             // 
             this.checkedListBox2.CheckOnClick = true;
             this.checkedListBox2.FormattingEnabled = true;
-            this.checkedListBox2.Location = new System.Drawing.Point(8, 35);
-            this.checkedListBox2.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.checkedListBox2.Location = new System.Drawing.Point(5, 23);
             this.checkedListBox2.Name = "checkedListBox2";
             this.checkedListBox2.ScrollAlwaysVisible = true;
-            this.checkedListBox2.Size = new System.Drawing.Size(236, 504);
+            this.checkedListBox2.Size = new System.Drawing.Size(143, 326);
             this.checkedListBox2.Sorted = true;
             this.checkedListBox2.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(110, 56);
-            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label1.Location = new System.Drawing.Point(66, 37);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 18);
+            this.label1.Size = new System.Drawing.Size(0, 12);
             this.label1.TabIndex = 3;
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(313, 93);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.dataGridView1.Location = new System.Drawing.Point(188, 62);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 21;
-            this.dataGridView1.Size = new System.Drawing.Size(1100, 535);
+            this.dataGridView1.Size = new System.Drawing.Size(660, 357);
             this.dataGridView1.TabIndex = 4;
             // 
             // comboBox1
@@ -146,13 +141,13 @@
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
+            "詳細",
             "Name毎(Totalダメージ)",
             "Target毎",
             "ダメージソース毎"});
-            this.comboBox1.Location = new System.Drawing.Point(485, 56);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.comboBox1.Location = new System.Drawing.Point(291, 37);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(217, 26);
+            this.comboBox1.Size = new System.Drawing.Size(132, 20);
             this.comboBox1.TabIndex = 5;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -160,20 +155,20 @@
             // 
             this.checkedListBox3.CheckOnClick = true;
             this.checkedListBox3.FormattingEnabled = true;
-            this.checkedListBox3.Location = new System.Drawing.Point(8, 35);
-            this.checkedListBox3.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.checkedListBox3.Location = new System.Drawing.Point(5, 23);
             this.checkedListBox3.Name = "checkedListBox3";
             this.checkedListBox3.ScrollAlwaysVisible = true;
-            this.checkedListBox3.Size = new System.Drawing.Size(236, 504);
+            this.checkedListBox3.Size = new System.Drawing.Size(143, 326);
             this.checkedListBox3.Sorted = true;
             this.checkedListBox3.TabIndex = 2;
             // 
             // checkBoxName
             // 
             this.checkBoxName.AutoSize = true;
-            this.checkBoxName.Location = new System.Drawing.Point(10, 6);
+            this.checkBoxName.Location = new System.Drawing.Point(6, 4);
+            this.checkBoxName.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxName.Name = "checkBoxName";
-            this.checkBoxName.Size = new System.Drawing.Size(105, 22);
+            this.checkBoxName.Size = new System.Drawing.Size(74, 16);
             this.checkBoxName.TabIndex = 6;
             this.checkBoxName.Text = "Check All";
             this.checkBoxName.UseVisualStyleBackColor = true;
@@ -182,9 +177,10 @@
             // checkBoxTarget
             // 
             this.checkBoxTarget.AutoSize = true;
-            this.checkBoxTarget.Location = new System.Drawing.Point(10, 6);
+            this.checkBoxTarget.Location = new System.Drawing.Point(6, 4);
+            this.checkBoxTarget.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxTarget.Name = "checkBoxTarget";
-            this.checkBoxTarget.Size = new System.Drawing.Size(105, 22);
+            this.checkBoxTarget.Size = new System.Drawing.Size(74, 16);
             this.checkBoxTarget.TabIndex = 6;
             this.checkBoxTarget.Text = "Check All";
             this.checkBoxTarget.UseVisualStyleBackColor = true;
@@ -193,9 +189,10 @@
             // checkBoxSource
             // 
             this.checkBoxSource.AutoSize = true;
-            this.checkBoxSource.Location = new System.Drawing.Point(10, 6);
+            this.checkBoxSource.Location = new System.Drawing.Point(6, 4);
+            this.checkBoxSource.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxSource.Name = "checkBoxSource";
-            this.checkBoxSource.Size = new System.Drawing.Size(105, 22);
+            this.checkBoxSource.Size = new System.Drawing.Size(74, 16);
             this.checkBoxSource.TabIndex = 6;
             this.checkBoxSource.Text = "Check All";
             this.checkBoxSource.UseVisualStyleBackColor = true;
@@ -206,20 +203,22 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Location = new System.Drawing.Point(12, 51);
+            this.tabControl1.Location = new System.Drawing.Point(7, 34);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(266, 581);
+            this.tabControl1.Size = new System.Drawing.Size(160, 387);
             this.tabControl1.TabIndex = 7;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.checkedListBox1);
             this.tabPage1.Controls.Add(this.checkBoxName);
-            this.tabPage1.Location = new System.Drawing.Point(4, 28);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(258, 549);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
+            this.tabPage1.Size = new System.Drawing.Size(152, 361);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "PC Name";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -228,10 +227,11 @@
             // 
             this.tabPage2.Controls.Add(this.checkedListBox2);
             this.tabPage2.Controls.Add(this.checkBoxTarget);
-            this.tabPage2.Location = new System.Drawing.Point(4, 28);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(258, 549);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
+            this.tabPage2.Size = new System.Drawing.Size(152, 361);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Target";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -240,18 +240,19 @@
             // 
             this.tabPage3.Controls.Add(this.checkedListBox3);
             this.tabPage3.Controls.Add(this.checkBoxSource);
-            this.tabPage3.Location = new System.Drawing.Point(4, 28);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(258, 549);
+            this.tabPage3.Size = new System.Drawing.Size(152, 361);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Source";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1427, 643);
+            this.ClientSize = new System.Drawing.Size(856, 429);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.dataGridView1);
@@ -259,7 +260,6 @@
             this.Controls.Add(this.buttonTest);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.menuStrip1.ResumeLayout(false);

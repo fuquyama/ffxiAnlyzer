@@ -33,20 +33,120 @@ namespace ffxiAnlyzer
         private void buttonTest_Click(object sender, EventArgs e)
         {
             this.Cursor = Cursors.WaitCursor;
-            var dmgDataSetList = new List<DmgDataSet>();
 
-            dmgDataSet.DataTable2.Clear();
-
-            var names = checkedListBox1.CheckedItems;
-            foreach (string name in names)
+            // name,target,sourceの統計(Table2)
             {
-                var targets = checkedListBox2.CheckedItems;
-                foreach (string target in targets)
+                dmgDataSet.DataTable2.Clear();
+                var names = checkedListBox1.CheckedItems;
+                foreach (string name in names)
+                {
+                    var targets = checkedListBox2.CheckedItems;
+                    foreach (string target in targets)
+                    {
+                        string repalcedName = name.Replace("'", "''");
+                        string repalcedTarget = target.Replace("'", "''");
+                        var sources = checkedListBox3.CheckedItems;
+                        foreach (string source in sources)
+                        {
+                            var ds1 = dmgDataSet.DataTable1.Select(string.Format("name = '{0}' AND target = '{1}' AND source = '{2}'", repalcedName, repalcedTarget, source));
+
+                            if (ds1.Length > 0)
+                            {
+                                UInt32 dmg = 0;
+                                UInt32 dmgSum = 0;
+                                UInt32 count = 0;
+                                UInt32 dmgMax = UInt32.MinValue;
+                                UInt32 dmgMin = UInt32.MaxValue;
+                                foreach (var dr in ds1)
+                                {
+                                    dmg = (UInt32)dr["damage"];
+                                    dmgSum += dmg;
+                                    if (dmg > dmgMax)
+                                    {
+                                        dmgMax = dmg;
+                                    }
+                                    if (dmg < dmgMin)
+                                    {
+                                        dmgMin = dmg;
+                                    }
+                                    count++;
+                                }
+                                var dr2 = (DataSet1.DataTable2Row)dmgDataSet.DataTable2.NewRow();
+                                dr2.name = name;
+                                dr2.target = target;
+                                dr2.source = source;
+                                dr2.damageTot = dmgSum;
+                                dr2.damageMax = dmgMax;
+                                dr2.damageMin = dmgMin;
+                                dr2.damageAve = (double)dmgSum / (double)count;
+                                dr2.count = count;
+                                dmgDataSet.DataTable2.Rows.Add(dr2);
+                            }
+                        }
+                    }
+                }
+            }
+
+            // name毎の集計(Table3)とtarget毎の集計(Table4)
+            {
+                dmgDataSet.DataTable3.Clear();
+                dmgDataSet.DataTable4.Clear();
+                var names = checkedListBox1.CheckedItems;
+                foreach (string name in names)
+                {
+                    var targets = checkedListBox2.CheckedItems;
+                    foreach (string target in targets)
+                    {
+                        string repalcedName = name.Replace("'", "''");
+                        string repalcedTarget = target.Replace("'", "''");
+                        var ds1 = dmgDataSet.DataTable1.Select(string.Format("name = '{0}' AND target = '{1}'", repalcedName, repalcedTarget));
+
+                        if (ds1.Length > 0)
+                        {
+                            UInt32 dmg = 0;
+                            UInt32 dmgSum = 0;
+                            foreach (var dr in ds1)
+                            {
+                                dmg = (UInt32)dr["damage"];
+                                dmgSum += dmg;
+                            }
+                            var dr2 = (DataSet1.DataTable4Row)dmgDataSet.DataTable4.NewRow();
+                            dr2.target = target;
+                            dr2.name = name;
+                            dr2.damageTot = dmgSum;
+                            dmgDataSet.DataTable4.Rows.Add(dr2);
+                        }
+                    }
+
+                    var ds2 = dmgDataSet.DataTable4.Select(string.Format("name = '{0}'", name));
+                    if (ds2.Length > 0)
+                    {
+                        UInt32 dmg = 0;
+                        UInt32 dmgSum = 0;
+                        foreach (var dr in ds2)
+                        {
+                            dmg = (UInt32)dr["damageTot"];
+                            dmgSum += dmg;
+                        }
+                        var dr2 = (DataSet1.DataTable3Row)dmgDataSet.DataTable3.NewRow();
+                        dr2.name = name;
+                        dr2.damageTot = dmgSum;
+                        dmgDataSet.DataTable3.Rows.Add(dr2);
+                    }
+                }
+            }
+
+            // ダメージソース毎の集計(Table5)
+            {
+                dmgDataSet.DataTable5.Clear();
+                var names = checkedListBox1.CheckedItems;
+                foreach (string name in names)
                 {
                     var sources = checkedListBox3.CheckedItems;
                     foreach (string source in sources)
                     {
-                        var ds1 = dmgDataSet.DataTable1.Select(string.Format("name = '{0}' AND target = '{1}' AND source = '{2}'", name, target, source));
+                        string repalcedName = name.Replace("'", "''");
+                        var ds1 = dmgDataSet.DataTable1.Select(string.Format("name = '{0}' AND source = '{1}'", repalcedName, source));
 
                         if (ds1.Length > 0)
                         {
@@ -69,33 +169,23 @@ namespace ffxiAnlyzer
                                 }
                                 count++;
                             }
-                            var dds = new DmgDataSet();
-                            dds.name = name;
-                            dds.target = target;
-                            dds.source = source;
-                            dds.damage = dmgSum;
-                            dds.damageMax = dmgMax;
-                            dds.damageMin = dmgMin;
-                            dds.count = count;
-                            dmgDataSetList.Add(dds);
-                            var dr2 = (DataSet1.DataTable2Row)dmgDataSet.DataTable2.NewRow();
+                            var dr2 = (DataSet1.DataTable5Row)dmgDataSet.DataTable5.NewRow();
                             dr2.name = name;
-                            dr2.target = target;
                             dr2.source = source;
                             dr2.damageTot = dmgSum;
                             dr2.damageMax = dmgMax;
                             dr2.damageMin = dmgMin;
-                            dr2.damageAve = dds.avarage;
+                            dr2.damageAve = (double)dmgSum / (double)count;
                             dr2.count = count;
-                            dmgDataSet.DataTable2.Rows.Add(dr2);
+                            dmgDataSet.DataTable5.Rows.Add(dr2);
                         }
                     }
                 }
             }
 
-            dataGridView1.DataSource = dmgDataSet.DataTable2;
-            dataGridView1.Columns["damageAve"].DefaultCellStyle.Format = ".000";
-            dataGridView1.Update();
+            comboBox1.SelectedIndex = 0;
+            comboBox1_SelectedIndexChanged(null, null);
+
             this.Cursor = Cursors.Default;
         }
 
@@ -230,6 +320,7 @@ namespace ffxiAnlyzer
                 {
                     checkedListBox3.Items.Add(dr.source, CheckState.Checked);
                 }
+                checkBoxSource.Checked = true;
             }
 
             this.Cursor = Cursors.Default;
@@ -240,15 +331,24 @@ namespace ffxiAnlyzer
         {
             switch (comboBox1.SelectedItem.ToString())
             {
+                case "詳細":
+                    dataGridView1.DataSource = dmgDataSet.DataTable2;
+                    dataGridView1.Columns["damageAve"].DefaultCellStyle.Format = ".000";
+                    break;
                 case "Name毎(Totalダメージ)":
+                    dataGridView1.DataSource = dmgDataSet.DataTable3;
                     break;
                 case "Target毎":
+                    dataGridView1.DataSource = dmgDataSet.DataTable4;
                     break;
                 case "ダメージソース毎":
+                    dataGridView1.DataSource = dmgDataSet.DataTable5;
+                    dataGridView1.Columns["damageAve"].DefaultCellStyle.Format = ".000";
                     break;
                 default:
                     break;
             }
+            dataGridView1.Update();
         }
 
         private void checkBoxName_CheckedChanged(object sender, EventArgs e)
@@ -305,31 +405,8 @@ namespace ffxiAnlyzer
             }
         }
 
-
     }
 
 
-    class DmgDataSet
-    {
-        public string name;
-        public string target;
-        public string source;
-        public UInt32 damage;
-        public UInt32 damageMax;
-        public UInt32 damageMin;
-        public UInt32 count;
-        public double avarage { get { return (double)damage / (double)count; } }
-
-        public DmgDataSet()
-        {
-            name = "";
-            target = "";
-            source = "";
-            damage = 0;
-            damageMax = 0;
-            damageMin = 0;
-            count = 0;
-        }
-    }
 
 }
